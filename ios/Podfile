@@ -22,4 +22,11 @@ target 'demo' do
     react_native_post_install(installer)
     __apply_Xcode_12_5_M1_post_install_workaround(installer)
   end
+
+  # react-native-permissions:
+  permissions_path = '../node_modules/react-native-permissions/ios'
+  pod 'Permission-Notifications', :path => "#{permissions_path}/Notifications"
+
+  # react-native-vector-icons:
+  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 end
