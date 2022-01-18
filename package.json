@@ -6,6 +6,7 @@
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "prepare.ios": "(cd ios; pod install)",
+    "prepare": "mkdir -p android/app/src/main/assets/; cp node_modules/edge-currency-accountbased/lib/react-native/edge-currency-accountbased.js android/app/src/main/assets/",
     "start": "react-native start",
     "test": "jest",
     "lint": "eslint ."
@@ -17,6 +18,7 @@
     "@react-native-community/art": "^1.2.0",
     "disklet": "^0.5.1",
     "edge-core-js": "^0.19.1",
+    "edge-currency-accountbased": "^0.11.7",
     "edge-login-ui-rn": "^0.9.29",
     "react": "17.0.2",
     "react-native": "0.66.4",
