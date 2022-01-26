@@ -1,55 +1,48 @@
 # Edge React Native Login UI Demo
 
-This repo contains a basic app created by following the readme instructions at https://github.com/Airbitz/edge-login-ui/tree/develop/packages/edge-login-ui-rn
+This repo contains a basic app created by following the readme instructions at [edge-login-ui-rn](https://github.com/Airbitz/edge-login-ui/tree/develop/packages/edge-login-ui-rn).
 
-## Requirements
+## Getting Started
 
-Edge is known to build with this exact tool set. Updated versions of these toolsets may break the build or app. If you have issues, try mirroring these exact versions.
+### Prepare React Native Development Tools
 
-   * MacOS High Sierra 10.13.3
-   * Xcode 9.4.1
-   * Android Studio 3.1.3
-   * CocoaPods 1.5.3
-   * Android NDK r15c *This is must have. Version r17 is known to break native code builds*
-   * NodeJS 8.9.3
-   * NPM 5.5.1
-   * Yarn 1.5.1
-   * Java 1.8.0_152
+The React Native documentation contains [detailed instructions on how to prepare your computer for React Native development](https://reactnative.dev/docs/0.65/environment-setup). Follow the instructions in the "React Native CLI Quickstart" for your specific platform.
 
-## Install dependencies (Yarn required. Do not use NPM)
+If you are using a Mac, follow both the iOS and Android target instructions. Otherwise, you only need the Android target instructions.
 
-    cd edge-login-ui-rn-demo
+### Install JavaScript dependencies
+
     yarn
+    yarn prepare
 
-## Android
+### Run the bundler
 
-*IMPORTANT* You must use version r15c to build. r17 and above break NDK build that this app requires. Download
-the r15c NDK version here: https://developer.android.com/ndk/downloads/older_releases
+    yarn start
 
-(MacOS) If the NDK is already installed from Android Studio, it should be in `/Users/[user]/Library/Android/sdk/ndk-bundle`.
-If you are using a version other than r15c, replace your version with version r15c downloaded from above
+This bundler process needs to run in the background in order to debug the app, so feel free to run this in its own terminal window.
 
-### Set the following environment vars
+### Run the app in debug mode
 
-    export ANDROID_NDK_HOME=/Users/[username]/Library/Android/sdk/ndk-bundle
-    export NDK_HOME=/Users/[username]/Library/Android/sdk/ndk-bundle
-    export SDK_HOME=/Users/[username]/Library/Android/sdk
-    export JAVA_HOME="/Applications/Android Studio.app/Contents/jre/jdk/Contents/Home"
+#### iOS
 
-### Build App
+- Run `yarn prepare.ios` to generate the CocoaPods files. You will need to do this after the first install, and any time Xcode produces a `The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.` error.
+- Open `ios/demo.xcworkspace` in Xcode
+- Choose a target device or simulator and tap the play button on the top nav bar
+
+#### Android
+
+To build, install, and start the app on a simulator or physical phone with USB debugging, run:
+
+    yarn android
+
+Otherwise, to get an APK, do:
 
     cd android
-
-    # Release Build
-    ./gradlew assembleRelease
-
-    # Debug Build
     ./gradlew assembleDebug
 
-Find the resulting APKs using `find . | grep -i apk`
+- The resulting APK will be in `./app/build/outputs/apk/debug/app-debug.apk`
+- Copy the APK to a simulator like Genymotion or a real device via Email or messaging app
 
-## iOS
+## Debugging
 
-Load the `edge-login-ui-rn-demo/ios` directory into Xcode
-
-Tap the Play button on the top left to launch a debug build and simulator
+As with any modern React Native app, [Flipper](https://fbflipper.com/) is the officially-supported debugging app. Use the "React Native Hermes Debugger" to debug Javascript running in the UI.
